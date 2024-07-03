@@ -1,4 +1,4 @@
-@if (isAuthenticated()) {
+@if (!isAuthenticated()) {
 <div
   class="offcanvas offcanvas-start show text-bg-dark w-25"
   tabindex="-1"
@@ -22,7 +22,6 @@
       atque? At dolores asperiores, corporis minus velit quis repellendus ad.
     </p>
     <button type="button" class="btn btn-outline-secondary">Meu Perfil</button>
-    <button type="button" class="btn btn-outline-success">Postar</button>
     <button
       type="button"
       class="btn btn-outline-danger"
