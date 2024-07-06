@@ -1,4 +1,4 @@
-@if (!isAuthenticated()) {
+@if (isAuthenticated()) {
 <div
   class="offcanvas offcanvas-start show text-bg-dark w-25"
   tabindex="-1"
@@ -16,17 +16,28 @@
   </div>
   <div class="offcanvas-body d-flex flex-column text-center gap-2">
     <h5 class="mb-0">Amilton José</h5>
+    <div class="d-flex gap-3 justify-content-center">
+      <a href="https://www.linkedin.com/in/amilton-jose/" target="_blank" rel="noopener noreferrer">
+        <fa-icon
+          class="icon"
+          style="color: #0e76a8"
+          [icon]="linkedin"
+          size="lg"
+        />
+      </a>
+      <a href="https://github.com/amilton-sys" target="_blank" rel="noopener noreferrer">
+        <fa-icon class="icon" style="color: #fff" [icon]="git" size="lg" />
+      </a>
+    </div>
     <p class="mb-auto">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa similique,
-      quas ea, laborum harum aliquid magni error inventore natus, voluptates
-      atque? At dolores asperiores, corporis minus velit quis repellendus ad.
+      Profissional apaixonado pela Engenharia de Software, com experiência no
+      desenvolvimento de soluções inovadoras bem como o planejamento e execução
+      de testes automatizados e manuais para garantir a qualidade do software e
+      otimizar a performance do sistema. Estudante de Ciência da Computação,
+      focado em entregar soluções que superem as expectativas dos clientes.
     </p>
-    <button type="button" class="btn btn-outline-secondary">Meu Perfil</button>
-    <button
-      type="button"
-      class="btn btn-outline-danger"
-      (click)="logout()"
-    >
+
+    <button type="button" class="btn btn-outline-danger" (click)="logout()">
       Sair
     </button>
   </div>

@@ -1,9 +1,5 @@
 import { Usuario } from '../dtos/Usuario';
-import {
-  ReactiveFormsModule,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { ErrorMsgComponent } from '../shared/error-msg/error-msg.component';
 import { CommonModule } from '@angular/common';
@@ -16,13 +12,9 @@ import { AuthService } from '../services/auth.service';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  private usuario: Usuario = new Usuario;
+  private usuario = new Usuario();
 
-  constructor(private fb: FormBuilder,
-    private authService: AuthService,
-  ) {
-
-  }
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   form = this.fb.group({
     email: [
@@ -49,16 +41,15 @@ export class LoginComponent {
   });
 
   validateTouched(campo: string) {
-    return !this.form.get(campo)?.valid && this.form.get(campo)?.touched ? true : false;
+    return !!(!this.form.get(campo)?.valid && this.form.get(campo)?.touched);
   }
 
   validateEmail() {
     let emailField = this.form.get('email');
     if (emailField?.errors) {
-      return emailField.errors['email'] && emailField.touched;
+      return emailField.errors['email'];
     }
   }
-
 
   signIn() {
     this.usuario = {
@@ -68,9 +59,10 @@ export class LoginComponent {
     this.authService.login(this.usuario);
   }
 
-  errorCss(campo:string){
+  aplicarCss(campo: string) {
     return {
-      'is-invalid': this.validateTouched(campo)
-    }
+      'is-invalid': this.validateTouched(campo),
+      'is-valid': this.form.get(campo)?.valid,
+    };
   }
 }

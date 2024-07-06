@@ -4,7 +4,7 @@
       <input
         type="email"
         class="form-control"
-        [ngClass]="errorCss('email')"
+        [ngClass]="aplicarCss('email')"
         id="floatingInput"
         name="email"
         placeholder="name@example.com"
@@ -13,15 +13,15 @@
       />
       <label for="floatingInput">E-mail</label>
       @if(validateEmail()){
-       <div class="invalid-feedback">Dígite o email corretamente.</div>
+      <div class="invalid-feedback">Dígite o email corretamente.</div>
       } @if (validateTouched('email')){
-        <div class="invalid-feedback">E-mail obrigatório</div>
+      <div class="invalid-feedback">E-mail obrigatório</div>
       }
     </div>
 
     <div class="form-floating mb-3 text-start">
       <input
-        [ngClass]="errorCss('password')"
+        [ngClass]="aplicarCss('password')"
         type="password"
         class="form-control"
         id="floatingPassword"
@@ -35,6 +35,6 @@
       <div class="invalid-feedback">Senha obrigatório</div>
       }
     </div>
-    <button type="submit" class="btn btn-primary w-50">Entrar</button>
+    <button type="submit"  [disabled]="!form.valid"  class="btn btn-primary w-50">Entrar</button>
   </form>
 </div>

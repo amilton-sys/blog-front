@@ -1,79 +1,39 @@
-import {
-  Component,
-  inject,
-  TemplateRef,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CardComponent } from '../components/card/card.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PostService } from '../services/post.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FeedResponse } from '../dtos/FeedResponse';
+import { take, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CardComponent],
+  imports: [CardComponent, ReactiveFormsModule],
   templateUrl: './home.component.html',
-  styles: `
-    .dark-modal .modal-content {
-      background-color: #292b2c;
-      color: white;
-    }
-    .dark-modal .close {
-      color: white;
-    }
-    .light-blue-backdrop {
-      background-color: #696969;
-    }
-
-  `,
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  cards: any = [
-    {
-      title: 'Card 1',
-      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
-    {
-      title: 'Card 2',
-      body: 'Morbi consectetur, felis sed lobortis semper, ligula purus aliquet nisi, non laoreet neque nunc in dolor.',
-    },
-  ];
+  private postService = inject(PostService);
+  private route = inject(Router);
+  show: boolean = false;
+  feed: FeedResponse = {
+    feedItems: [],
+  };
 
-  private modalService = inject(NgbModal);
-
-  openBackDropCustomClass(content: TemplateRef<any>) {
-    this.modalService.open(content, { backdropClass: 'light-blue-backdrop' });
+  ngOnInit(): void {
+    this.fetchFeed();
   }
 
-  openWindowCustomClass(content: TemplateRef<any>) {
-    this.modalService.open(content, { windowClass: 'dark-modal' });
-  }
-
-  openSm(content: TemplateRef<any>) {
-    this.modalService.open(content, { size: 'sm' });
-  }
-
-  openLg(content: TemplateRef<any>) {
-    this.modalService.open(content, { size: 'lg' });
-  }
-
-  openXl(content: TemplateRef<any>) {
-    this.modalService.open(content, { size: 'xl' });
-  }
-
-  openFullscreen(content: TemplateRef<any>) {
-    this.modalService.open(content, { fullscreen: true });
-  }
-
-  openVerticallyCentered(content: TemplateRef<any>) {
-    this.modalService.open(content, { centered: true });
-  }
-
-  openScrollableContent(longContent: any) {
-    this.modalService.open(longContent, { scrollable: true });
-  }
-
-  openModalDialogCustomClass(content: TemplateRef<any>) {
-    this.modalService.open(content, { modalDialogClass: 'dark-modal' });
+  private fetchFeed() {
+    this.postService
+      .fetchPosts()
+      .pipe(
+        tap((data) => {
+          this.feed = data;
+        }),
+        take(1)
+      )
+      .subscribe((data) => console.log(data));
   }
 }

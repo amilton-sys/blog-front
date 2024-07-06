@@ -1,62 +1,15 @@
 <div
   class="d-flex flex-column gap-2 align-items-center mt-3"
-  style="margin-left: 18rem"
+  style="margin-left: 20rem"
 >
-  <div class="align-self-end m-3">
-    <button
-      class="btn btn-outline-success"
-      (click)="openBackDropCustomClass(content)"
-    >
-      Postar
-    </button>
-  </div>
-  @for (card of cards; track $index) {
-  <app-card [title]="card.title" [body]="card.body" />
+  @for (feed of feed.feedItems; track $index) {
+  <app-card
+    [postId]="feed.postId"
+    [title]="feed.title"
+    [description]="feed.description"
+    [content]="feed.content"
+    [thumb]="feed.thumb"
+    [createdAt]="feed.creationTimestamp"
+  />
   }
-
-  <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Postagem</h4>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
-      ></button>
-    </div>
-    <div class="modal-body">
-      <form action="">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label"
-            >Título</label
-          >
-          <input
-            type="titulo"
-            class="form-control"
-            id="titulo"
-            placeholder="Titulo"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label"
-            >Descrição</label
-          >
-          <textarea
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-          ></textarea>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-secondary"
-        (click)="modal.close('Close click')"
-      >
-        Close
-      </button>
-    </div>
-  </ng-template>
 </div>

@@ -1,9 +1,18 @@
-<div class="card" style="width: 42rem;">
+<div class="card mb-3">
+  <img
+    height="150"
+    src="{{ thumb }}"
+    class="card-img-top"
+    alt="..."
+  />
   <div class="card-body">
     <h5 class="card-title">{{ title }}</h5>
     <p class="card-text">
-      {{ body }}
+      {{ description }}
     </p>
+    <p class="card-text">
+      <small class="text-body-secondary">{{ createdAt | date:'d  MMM  H:MM:ss' }}</small>
+    </p>
+    <button class="btn btn-outline-dark w-5" (click)="onDetail()">Ver</button>
   </div>
 </div>
-

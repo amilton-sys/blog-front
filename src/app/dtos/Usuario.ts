@@ -1,4 +1,4 @@
 export class Usuario {
-  email: string | null | undefined;
-  password: string | null | undefined;
+  email: string | undefined | null;
+  password: string | undefined | null;
 }
