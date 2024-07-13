@@ -1,1 +1,12 @@
-<p>post-detail works!</p>
+<div class="mb-3 row">
+  <div class="col-md-3">
+  </div>
+  <div class="col p-5">
+    <h2>{{feedItem?.title}}</h2>
+    <p>{{feedItem?.description}}</p>
+    <article>{{feedItem?.content}}</article>
+    <p class="text-muted mt-2">
+      Publicado em: {{feedItem?.creationTimestamp | date:'d  MMM Y  H:MM'}}
+    </p>
+  </div>
+</div>

@@ -20,6 +20,15 @@ export class PostService {
       });
   }
 
+  fetchPostById(id: number) {
+    return this.http
+     .get<FeedItem>(`/api/posts/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+      });
+  }
+
   addFeedItem(feedItem: FeedItem) {
     return this.http
      .post('/api/posts', feedItem, {

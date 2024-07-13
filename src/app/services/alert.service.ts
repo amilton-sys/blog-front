@@ -15,7 +15,7 @@ export class AlertService {
     modalRef.componentInstance.message = message;
     setInterval(() => {
       modalRef.close();
-    }, 1000);
+    }, 3000);
   }
 
   showSuccess(message: string) {

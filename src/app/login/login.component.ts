@@ -4,10 +4,11 @@ import { Component } from '@angular/core';
 import { ErrorMsgComponent } from '../shared/error-msg/error-msg.component';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, ErrorMsgComponent, CommonModule],
+  imports: [ReactiveFormsModule, ErrorMsgComponent, CommonModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

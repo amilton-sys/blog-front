@@ -15,8 +15,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   private postService = inject(PostService);
-  private route = inject(Router);
   show: boolean = false;
+
   feed: FeedResponse = {
     feedItems: [],
   };
