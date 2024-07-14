@@ -77,9 +77,6 @@
               "buildTarget": "blog-front:build:development"
             }
           },
-          "options": {
-            "proxyConfig": "proxy.conf.js"
-          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {

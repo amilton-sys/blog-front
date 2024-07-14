@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { IToken } from '../dtos/IToken';
 import { catchError, take, tap } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class AuthService {
   http = inject(HttpClient);
   router = inject(Router);
   userAuthenticated: boolean = false;
+  url = environment.API;
 
   get useAuthentication(): boolean {
     return this.userAuthenticated;
@@ -22,7 +24,7 @@ export class AuthService {
 
   register(usuario: Usuario) {
     this.http
-     .post<Usuario>('/api/users', usuario)
+     .post<Usuario>(`${this.url}/users`, usuario)
      .pipe(
         tap(() => {
           this.alertService.showSuccess('Cadastro realizado com sucesso');
@@ -47,7 +49,7 @@ export class AuthService {
 
   login(usuario: Usuario) {
     this.http
-      .post<IToken>('/api/login', {
+      .post<IToken>(`${this.url}/login`, {
         email: usuario.email,
         password: usuario.password,
       })
