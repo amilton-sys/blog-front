@@ -26,7 +26,7 @@ export class PostService {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         },
-      });
+      }).pipe(take(1));
   }
 
   addFeedItem(feedItem: FeedItem) {
